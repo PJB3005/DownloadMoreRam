@@ -1,0 +1,4 @@
+@DownloadMoreRam_HostAddress = http://localhost:5079
+
+GET {{DownloadMoreRam_HostAddress}}/download/4GB
+

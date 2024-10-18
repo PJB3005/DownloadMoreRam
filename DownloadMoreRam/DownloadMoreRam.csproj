@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <PublishAot>true</PublishAot>
+        <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Dapper.AOT</InterceptorsPreviewNamespaces>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Assets\index.html"/>
+        <EmbeddedResource Include="DataManagement\Migrations\Script0001_Init.sql" />
+        <EmbeddedResource Include="Assets\scug.png" />
+        <EmbeddedResource Include="Assets\robots.txt" />
+        <EmbeddedResource Include="Assets\tf2build.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.35" />
+        <PackageReference Include="Dapper.AOT" Version="1.0.31"/>
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Download more RAM!</title>
+        <meta name="fediverse:creator" content="@pjb@mastodon.gamedev.place">
+        <style>
+            @font-face {
+                font-family: "TF2 Build";
+                src:
+                    local("TF2 Build"), /* Yeah who doesn't have the TF2 font installed on their PC? */
+                    url("tf2build.ttf");
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html {
+                --bg: white;
+                --fg: black;
+
+                font-family: Seravek, Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+
+                background-color: var(--bg);
+                color: var(--fg);
+            }
+
+            h1 {
+                font-family: 'TF2 Build';
+            }
+
+            .scug {
+                filter: drop-shadow(0px 0px 2px black);
+            }
+
+            html {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            body {
+                max-width: 800px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            #the-code {
+                padding: 10px;
+                background-color: #424242;
+                color: white;
+            }
+
+            #the-code::before {
+                content: '$ ';
+                color: rgb(158, 158, 158);
+            }
+
+            .link-list {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+            }
+
+            .link-list > li {
+                list-style-type: none;
+                margin-right: 20px;
+            }
+
+            .link-list > li:last-child {
+                margin-right: 0;
+            }
+
+            footer {
+                margin-top: 100px;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                html {
+                    --bg: rgb(32, 34, 27);
+                    --fg: white;
+                }
+
+                .scug {
+                    filter: none;
+                }
+                
+                a:link {
+                    color: rgb(93, 166, 240);
+                }
+
+                a:visited {
+                    color: rgb(56, 111, 167);
+                }
+            }
+        </style>
+        <script>
+            function update() {
+                let code = document.getElementById("the-code");
+                let value = document.getElementById("amount-select").value;
+
+                code.innerText = `curl https://downloadmoreram.slugcat.systems/download/${value} | sh`;
+            }
+
+            document.addEventListener("DOMContentLoaded", (ev) => {
+                document.getElementById("amount-select").addEventListener("change", () => {
+                    update();
+                });
+
+                update();
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="/scug.png" width="128" height="128" class="scug" alt="Jumping slugcat" />
+            <h1>Download more RAM!</h1>
+            <img src="/scug.png" width="128" height="128" class="scug" alt="Jumping slugcat" />
+        </header>
+        <main>
+            <p>
+                Ever since gamers first ran modded Minecraft on their MS DOS workstations, they have had too little RAM. Fear not, however, as <code>downloadmoreram.slugcat.systems</code> comes to the rescue!
+            </p>
+            <p>
+                So far, we have provided <strong>{{PROVIDED_GB}} GiB</strong> for poor gamers in need.
+            </p>
+            <p>
+                Simply run the below command to instantly get the desired amount of RAM. For free!
+            </p>
+            <pre id="the-code">curl https://downloadmoreram.slugcat.systems/download/1GB | sh</pre>
+            <select id="amount-select">
+                <option value="666MB">666 MiB (christ approved)</option>
+                <option value="1024MB">1024 MiB (most digits)</option>
+                <option value="1GB" selected>1 GiB</option>
+                <option value="2GB">1 GiB (buy one get one free)</option>
+                <option value="4GB">4 GiB</option>
+                <option value="8GB">8 GiB</option>
+                <option value="16GB">16 GiB</option>
+                <option value="32GB">32 GiB</option>
+                <option value="64GB">64 GiB</option>
+                <option value="128GB">128 GiB</option>
+                <option value="1TB">1 TiB (wowzers!)</option>
+            </select>
+        </main>
+        <footer>
+            <ul class="link-list">
+                <li><a href="https://slugcat.systems/">Meeeeee</a></li>
+                <li><a href="https://github.com/PJB3005/DownloadMoreRam">Source</a></li>
+            </ul>
+        </footer>
+    </body>
+</html>
