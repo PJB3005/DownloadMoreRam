@@ -40,7 +40,7 @@ app.MapGet("/download/{size}", (ILogger<Program> logger, DataManager data, strin
         # Wow look at you inspecting the code before piping it into sh like a fucking idiot
         
         name="/swapfile_$(openssl rand -hex 8)_{sizeMB}"
-        sudo sh -c 'umask 066 && dd if=/dev/zero of=$name bs={1024 * 1024} count={sizeMB}'
+        sudo sh -c "umask 066 && dd if=/dev/zero of=$name bs={1024 * 1024} count={sizeMB}"
         sudo mkswap $name
         sudo swapon $name
         echo "$name none swap defaults 0 0" >> /etc/fstab
