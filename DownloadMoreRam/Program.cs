@@ -23,7 +23,9 @@ app.MapGet("/", (DataManager data) =>
 {
     using var con = data.OpenConnection();
     var amountProvidedGB = con.QuerySingle<long>("SELECT SUM(AmountMB) FROM DownloadLog") / 1024f;
+    var countDownloads = con.QuerySingle<int>("SELECT COUNT(*) FROM DownloadLog");
     var text = htmlTemplate.Replace("{{PROVIDED_GB}}", amountProvidedGB.ToString("F2"));
+    text = text.Replace("{{GAMER_COUNT}}", countDownloads.ToString());
 
     return Results.Content(text, MediaTypeNames.Text.Html);
 });
