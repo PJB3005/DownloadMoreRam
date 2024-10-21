@@ -4,13 +4,13 @@ namespace DownloadMoreRam;
 
 public static partial class Helpers
 {
-    public static int? GetSizeMB(string input)
+    public static long? GetSizeMB(string input)
     {
         var match = SizeRegex().Match(input);
         if (!match.Success)
             return null;
 
-        if (!int.TryParse(match.Groups[1].Value, out var size))
+        if (!long.TryParse(match.Groups[1].Value, out var size))
             return null;
 
         switch (match.Groups[2].Value)

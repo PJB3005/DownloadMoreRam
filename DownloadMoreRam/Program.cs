@@ -34,7 +34,7 @@ app.MapGet("/download/{size}", (ILogger<Program> logger, DataManager data, strin
 {
     var sizeMB = Helpers.GetSizeMB(size);
 
-    if (sizeMB == null)
+    if (sizeMB is null or > 1024L * 1024 * 1024 * 1024 * 16)
         return Results.BadRequest();
 
     var code = $"""
@@ -65,7 +65,7 @@ app.Run();
 
 return;
 
-void LogDownloadRequest(DataManager dataManager, int sizeMB)
+void LogDownloadRequest(DataManager dataManager, long sizeMB)
 {
     using var con = dataManager.OpenConnection();
     con.Execute("INSERT INTO DownloadLog(Time, AmountMB) VALUES (datetime('now'), @SizeMB)", new { SizeMB = sizeMB });
