@@ -34,7 +34,7 @@ app.MapGet("/download/{size}", (ILogger<Program> logger, DataManager data, strin
 {
     var sizeMB = Helpers.GetSizeMB(size);
 
-    if (sizeMB is null or > 1024L * 1024 * 1024 * 1024 * 16)
+    if (sizeMB is null or > 1024 * 1024 * 16)
         return Results.BadRequest();
 
     var code = $"""
